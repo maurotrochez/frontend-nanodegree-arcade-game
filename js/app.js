@@ -1,8 +1,10 @@
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function(x, y, dt) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-
+    this.x = x;
+    this.y = y;
+    this.dt = dt;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -11,22 +13,26 @@ var Enemy = function() {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    this.dt = this.dt * dt;
+    this.dt = dt * 100;
+    enemy2.render(this.x=this.x+this.dt);
+    console.log(this.dt)
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
 }
 
 // Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    console.log(this.sprite)
+Enemy.prototype.render = function(x) {
+    //console.log(this.sprite);
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function () {
+var Player = function (x, y) {
+    this.x = x;
+    this.y = y;
     this.sprite = 'images/char-boy.png'
 }
 
@@ -34,19 +40,30 @@ Player.prototype.update = function () {
     
 }
 
-Player.prototype.render = function () {
+Player.prototype.render = function (x , y) {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
 Player.prototype.handleInput = function (argument) {
-    console.log(argument);
-}
+    if(argument==="up")
+        player.render( this.x, this.y=this.y-100);
+    
+    else if (argument === "down")
+        player.render( this.x, this.y=this.y+100);
+    
+    else if (argument === "left")
+        player.render( this.x = this.x - 100, this.y);
+    
+    else if (argument === "right")
+        player.render( this.x = this.x + 100, this.y);
+    
+}   
 
-var enemy1 = new Enemy();
-var enemy2 = new Enemy();
+var enemy1 = new Enemy(0, 0, 0);
+var enemy2 = new Enemy(100,100, 0);
 
-var allEnemies = [enemy1];
-var player = new Player();
+var allEnemies = [enemy1,enemy2];
+var player = new Player(200,400);
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
