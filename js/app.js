@@ -14,8 +14,11 @@ var Enemy = function(x, y, dt) {
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
     this.dt = dt * 100;
-    enemy2.render(this.x=this.x+this.dt);
-    console.log(this.dt)
+    this.x = this.x + this.dt;
+    if (this.x > 520)
+        this.x = -100;
+    this.render(this.x);
+    console.log(this.x)
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
@@ -46,16 +49,16 @@ Player.prototype.render = function (x , y) {
 
 Player.prototype.handleInput = function (argument) {
     if(argument==="up")
-        player.render( this.x, this.y=this.y-100);
+        this.render( this.x, this.y=this.y-100);
     
     else if (argument === "down")
-        player.render( this.x, this.y=this.y+100);
+        this.render( this.x, this.y=this.y+100);
     
     else if (argument === "left")
-        player.render( this.x = this.x - 100, this.y);
+        this.render( this.x = this.x - 100, this.y);
     
     else if (argument === "right")
-        player.render( this.x = this.x + 100, this.y);
+        this.render( this.x = this.x + 100, this.y);
     
 }   
 
