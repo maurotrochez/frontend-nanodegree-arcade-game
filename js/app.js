@@ -40,7 +40,7 @@ var Player = function (x, y) {
 }
 
 Player.prototype.update = function () {
-    
+
 }
 
 Player.prototype.render = function (x , y) {
@@ -48,22 +48,65 @@ Player.prototype.render = function (x , y) {
 }
 
 Player.prototype.handleInput = function (argument) {
-    if(argument==="up")
-        this.render( this.x, this.y=this.y-100);
-    
-    else if (argument === "down")
-        this.render( this.x, this.y=this.y+100);
-    
-    else if (argument === "left")
-        this.render( this.x = this.x - 100, this.y);
-    
-    else if (argument === "right")
-        this.render( this.x = this.x + 100, this.y);
-    
+    switch(argument){
+
+        case "up":
+        this.y -= 90;
+        if(this.y === -50)
+        {
+            this.render( this.x=200, this.y=400);
+            break;
+        }
+        else
+        {
+            this.render( this.x, this.y);
+            break;
+        }
+
+
+        case "down":
+        this.y+=90;
+        if(this.y >=400){
+            this.render( this.x, this.y=400);    
+            break;
+        }
+        else
+        {
+            this.render( this.x, this.y);    
+            break;   
+        }
+
+
+        case "left":
+        this.x-=100;
+        if(this.x <= -100)
+        {
+            this.render( this.x = 0, this.y);
+            break; 
+        }
+        else
+        {
+            this.render( this.x, this.y);
+            break; 
+        }
+
+
+        case "right":
+        this.x+=100;
+        if(this.x >400){
+            this.render( this.x = 400, this.y);
+            break;    
+        }
+        else
+        {
+            this.render( this.x, this.y);
+            break;   
+        }
+    }
 }   
 
 var enemy1 = new Enemy(-100, 200, 4);
-var enemy2 = new Enemy(-100,100, 1);
+var enemy2 = new Enemy(-100, 100, 1);
 
 var allEnemies = [enemy1,enemy2];
 var player = new Player(200,400);
