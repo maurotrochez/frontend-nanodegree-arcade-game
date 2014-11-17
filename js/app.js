@@ -8,7 +8,7 @@ var Enemy = function(x, y, dt) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-}
+};
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -18,17 +18,16 @@ Enemy.prototype.update = function(dt) {
     if (this.x > 500){
         this.render(this.x=-150);
     }
-    console.log(this.x);
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-}
+};
 
 // Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function(x) {
+Enemy.prototype.render = function() {
     //console.log(this.sprite);
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -37,15 +36,17 @@ var Player = function (x, y) {
     this.x = x;
     this.y = y;
     this.sprite = 'images/char-boy.png'
-}
+};
 
 Player.prototype.update = function () {
+    this.x = this.x;
+    this.y = this.y;
+};
 
-}
-
-Player.prototype.render = function (x , y) {
+Player.prototype.render = function (x ,y) {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
+
 
 Player.prototype.handleInput = function (argument) {
     switch(argument){
@@ -67,13 +68,13 @@ Player.prototype.handleInput = function (argument) {
         case "down":
         this.y+=90;
         if(this.y >=400){
-            this.render( this.x, this.y=400);    
+            this.render( this.x, this.y=400);
             break;
         }
         else
         {
-            this.render( this.x, this.y);    
-            break;   
+            this.render( this.x, this.y);
+            break;
         }
 
 
@@ -82,12 +83,12 @@ Player.prototype.handleInput = function (argument) {
         if(this.x <= -100)
         {
             this.render( this.x = 0, this.y);
-            break; 
+            break;
         }
         else
         {
             this.render( this.x, this.y);
-            break; 
+            break;
         }
 
 
@@ -95,18 +96,19 @@ Player.prototype.handleInput = function (argument) {
         this.x+=100;
         if(this.x >400){
             this.render( this.x = 400, this.y);
-            break;    
+            break;
         }
         else
         {
             this.render( this.x, this.y);
-            break;   
+            break;
         }
     }
-}   
+};
 
-var enemy1 = new Enemy(-100, 200, 4);
-var enemy2 = new Enemy(-100, 100, 1);
+
+var enemy1 = new Enemy(-100, 220, 4);
+var enemy2 = new Enemy(-100, 140, 1);
 
 var allEnemies = [enemy1,enemy2];
 var player = new Player(200,400);
